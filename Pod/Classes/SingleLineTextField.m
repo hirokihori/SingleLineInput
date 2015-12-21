@@ -30,6 +30,30 @@
     BOOL createdPlaceHolder;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        offSetSizeTextField = 14;
+        self.lineSelectedColor = [UIColor colorWithRed:0.33 green:0.49 blue:0.36 alpha:1];
+        self.lineNormalColor   = [UIColor colorWithRed:0.84 green:0.84 blue:0.84 alpha:1];
+        self.lineDisabledColor = [UIColor grayColor];
+        self.textColor     = [UIColor blackColor];
+        self.delegate = self;
+        self.textColor = inputTextColor;
+        [self addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        placeHolderString = self.placeholder;
+        self.placeholder = NULL;
+        self.font = [UIFont systemFontOfSize:13];
+        [self createLineInput];
+        [self createPlaceHolderInput];
+        self.borderStyle = UITextBorderStyleNone;
+        animationDuration = 0.1;
+        aFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height + offSetSizeTextField);
+    }
+    return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
